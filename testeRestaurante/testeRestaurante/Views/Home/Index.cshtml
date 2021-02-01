@@ -11,7 +11,8 @@
             <p>Faça e confira seus pedidos aqui.</p>
         </div>
 
-        <form action="#" method="post" role="form" class="php-email-form">
+        @using (Html.BeginForm("Create", "Pedidos", FormMethod.Post))
+        {
             <div class="form-row">
                 <div class="col-lg-12 col-md-12 form-group">
                     <input type="text" name="pedido" class="form-control" id="pedido" placeholder="Escolha seus itens" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
@@ -19,7 +20,36 @@
                 </div>
             </div>
             <div class="text-center"><button type="submit">Enviar pedido</button></div>
+        }
+
+    </div>
+    <br />
+    <br />
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Último pedido</h2>
+            <p>Confira seu último pedido.</p>
+        </div>
+        <form action="#">
+            <div class="form-row">
+                <div class="col-lg-12 col-md-12 form-group">
+                    <input type="text" value="@ViewData["pedido"]" name="ultimoPedido" class="form-control" id="ultimoPedido" placeholder="Escolha seus itens" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                </div>
+            </div>
         </form>
 
     </div>
 </section><!-- End Book A Table Section -->
+<script type="text/javascript">
+    item = document.getElementById("ultimoPedido");
+
+    pedido = item.value;
+    pedido = pedido.split(',');
+    for (var i = 0; i < pedido.length; i++)
+    {
+        pedido[i] = pedido[i].replace(/[^a-zA-Zs]/g, "");
+    }
+
+    item.value = pedido;
+</script>

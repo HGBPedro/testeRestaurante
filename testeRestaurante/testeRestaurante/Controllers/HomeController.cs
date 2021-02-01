@@ -10,6 +10,12 @@ namespace testeRestaurante.Controllers
     {
         public ActionResult Index()
         {
+            string path = Server.MapPath("~/JSON/pedidos.json");
+
+            string jsonString = System.IO.File.ReadAllText(path);
+
+            ViewData["pedido"] = jsonString;
+
             return View();
         }
 
